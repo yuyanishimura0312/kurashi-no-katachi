@@ -1,0 +1,347 @@
+/* ============================================================================
+ * series-listing.css ― 連載一覧の共通CSS
+ *
+ * 連載100話一覧のデザインを再利用可能なスタイルとして抽出した汎用CSS。
+ * 元デザイン: https://yuyanishimura0312.github.io/kurashi-no-katachi/articles.html
+ *
+ * 使い方:
+ *   <link rel="stylesheet" href="css/series-listing.css">
+ *   <div class="series-listing">
+ *     <section class="kl-banner">...</section>
+ *     <div class="kl-progress">...</div>
+ *     <section class="kl-parts-jump">...</section>
+ *     <main class="kl-content-main">
+ *       <section class="kl-part-section">
+ *         <div class="kl-part-header">...</div>
+ *         <div class="kl-ep-list">
+ *           <a class="kl-ep-item" href="...">
+ *             <div class="kl-ep-num">001<span class="kl-ep-num-total">/100</span></div>
+ *             <div class="kl-ep-body">
+ *               <div class="kl-ep-eyebrow">...</div>
+ *               <div class="kl-ep-title">...</div>
+ *               <div class="kl-ep-sub">...</div>
+ *               <div class="kl-ep-meta">
+ *                 <span class="kl-ep-domain">...</span>
+ *                 <span class="kl-ep-badge published">公開中</span>
+ *               </div>
+ *             </div>
+ *           </a>
+ *         </div>
+ *       </section>
+ *     </main>
+ *   </div>
+ *
+ * テーマ変更:
+ *   .series-listing 内の CSS変数 (--kl-bg, --kl-accent 等) を上書きすることで
+ *   連載ごとに色を切り替え可能。デフォルトは「暮らしのかたち」のダーク+赤。
+ *
+ *   例: <div class="series-listing" style="--kl-accent:#3A8AFF;">...</div>
+ *
+ * すべてのスタイルは .series-listing スコープに閉じており、
+ * 変数も .series-listing 内で再定義しているため、ページ全体（赤白CI等）には影響しない。
+ * ========================================================================== */
+
+.series-listing {
+  --kl-bg:           #14110F;
+  --kl-bg-soft:      #1E1B19;
+  --kl-bg-tint:      #25221F;
+  --kl-ink:          #FFFFFF;
+  --kl-ink-soft:     #D8D5D1;
+  --kl-ink-mute:     #A6A29D;
+  --kl-ink-faint:    #7A7672;
+  --kl-accent:       #FF3644;
+  --kl-accent-deep:  #FF5560;
+  --kl-accent-soft:  rgba(255, 54, 68, 0.10);
+  --kl-line:         #2D2A27;
+  --kl-line-soft:    #1F1D1B;
+  --kl-serif:   "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "Plantin MT Pro", Georgia, serif;
+  --kl-sans:    "Noto Sans JP", "Hiragino Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --kl-display: "Judson", "Noto Serif JP", Georgia, serif;
+
+  background: var(--kl-bg);
+  color: var(--kl-ink);
+  font-family: var(--kl-serif);
+  line-height: 1.95;
+  letter-spacing: 0.02em;
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+  margin: 0 -32px;
+  padding: 0 32px;
+}
+
+.series-listing a { color: var(--kl-accent); text-decoration: none; transition: color .15s; }
+.series-listing a:hover { color: var(--kl-accent-deep); }
+
+/* ── Banner ────────────────────────────────────────────────────────────── */
+.series-listing .kl-banner {
+  background: var(--kl-bg);
+  padding: 64px 24px 40px;
+  border-bottom: 1px solid var(--kl-line);
+}
+.series-listing .kl-banner-inner { max-width: 1080px; margin: 0 auto; }
+.series-listing .kl-banner-eyebrow {
+  font-family: var(--kl-sans);
+  font-size: 11px; letter-spacing: 0.32em;
+  color: var(--kl-accent); font-weight: 700;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.series-listing .kl-banner-eyebrow::before {
+  content: ""; width: 32px; height: 2px; background: var(--kl-accent);
+}
+.series-listing .kl-banner-title {
+  font-family: var(--kl-serif);
+  font-weight: 700; font-size: 36px;
+  line-height: 1.45; letter-spacing: 0.04em;
+  color: var(--kl-ink); margin-bottom: 14px;
+}
+.series-listing .kl-banner-en {
+  font-family: var(--kl-display);
+  font-weight: 400; font-size: 18px;
+  color: var(--kl-ink-mute); margin-bottom: 32px;
+}
+.series-listing .kl-banner-desc {
+  font-family: var(--kl-serif);
+  font-size: 14.5px;
+  color: var(--kl-ink-soft);
+  line-height: 1.95;
+  margin-bottom: 28px;
+  max-width: 720px;
+}
+.series-listing .kl-stats {
+  display: grid; grid-template-columns: repeat(4, auto);
+  gap: 32px; align-items: baseline;
+  padding-top: 24px; border-top: 1px solid var(--kl-line);
+  font-family: var(--kl-sans);
+  font-size: 11px; letter-spacing: 0.12em;
+  color: var(--kl-ink-mute);
+}
+.series-listing .kl-stats span {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.series-listing .kl-stats span strong {
+  font-family: var(--kl-display);
+  font-weight: 700; font-size: 22px;
+  color: var(--kl-ink); letter-spacing: 0;
+}
+.series-listing .kl-stats span a {
+  font-family: var(--kl-display);
+  font-weight: 700; font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+/* ── Progress bar ──────────────────────────────────────────────────────── */
+.series-listing .kl-progress {
+  max-width: 1080px; margin: 24px auto 0;
+  padding: 0 24px;
+}
+.series-listing .kl-progress-bar-wrap {
+  background: var(--kl-bg-tint);
+  height: 6px; position: relative; overflow: hidden;
+}
+.series-listing .kl-progress-bar-fill {
+  background: var(--kl-accent);
+  height: 100%; width: 100%;
+}
+.series-listing .kl-progress-meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-top: 8px;
+  font-family: var(--kl-sans);
+  font-size: 10.5px;
+  color: var(--kl-ink-mute);
+  letter-spacing: 0.14em;
+}
+.series-listing .kl-progress-meta strong {
+  color: var(--kl-ink); font-weight: 700;
+}
+
+/* ── Parts jump ────────────────────────────────────────────────────────── */
+.series-listing .kl-parts-jump {
+  max-width: 1080px; margin: 48px auto 0;
+  padding: 0 24px;
+}
+.series-listing .kl-parts-jump-label {
+  font-family: var(--kl-sans);
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--kl-accent);
+  margin-bottom: 14px;
+}
+.series-listing .kl-parts-jump-title {
+  font-family: var(--kl-serif);
+  font-weight: 700; font-size: 22px;
+  color: var(--kl-ink); margin-bottom: 24px;
+}
+.series-listing .kl-parts-jump-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.series-listing .kl-part-jump-card {
+  background: var(--kl-bg);
+  border: 1px solid var(--kl-line);
+  padding: 22px 20px;
+  text-decoration: none;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: border-color .15s, transform .15s;
+}
+.series-listing .kl-part-jump-card:hover {
+  border-color: var(--kl-accent);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.series-listing .kl-part-jump-num {
+  font-family: var(--kl-display);
+  font-weight: 700; font-size: 24px;
+  color: var(--kl-accent); line-height: 1;
+}
+.series-listing .kl-part-jump-name {
+  font-family: var(--kl-serif);
+  font-weight: 700; font-size: 15px;
+  color: var(--kl-ink); line-height: 1.55;
+}
+.series-listing .kl-part-jump-sub {
+  font-family: var(--kl-sans);
+  font-size: 10.5px;
+  color: var(--kl-ink-mute);
+  line-height: 1.65;
+}
+
+/* ── Content main ──────────────────────────────────────────────────────── */
+.series-listing .kl-content-main {
+  max-width: 1080px;
+  margin: 56px auto 0;
+  padding: 0 24px 72px;
+}
+
+.series-listing .kl-part-section {
+  margin-bottom: 72px;
+  scroll-margin-top: 80px;
+}
+.series-listing .kl-part-section:last-child { margin-bottom: 0; }
+.series-listing .kl-part-header {
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--kl-ink);
+  margin-bottom: 24px;
+}
+.series-listing .kl-part-label {
+  font-family: var(--kl-sans);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--kl-accent);
+  margin-bottom: 12px;
+}
+.series-listing .kl-part-title {
+  font-family: var(--kl-serif);
+  font-weight: 700; font-size: 26px;
+  color: var(--kl-ink); letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.series-listing .kl-part-stats {
+  font-family: var(--kl-sans);
+  font-size: 11px; letter-spacing: 0.14em;
+  color: var(--kl-ink-mute);
+  margin-top: 6px;
+}
+
+/* ── Episode list ──────────────────────────────────────────────────────── */
+.series-listing .kl-ep-list {
+  display: flex; flex-direction: column;
+  gap: 0;
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.series-listing .kl-ep-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--kl-line-soft);
+  text-decoration: none;
+  transition: background .15s;
+}
+.series-listing .kl-ep-item:hover {
+  background: var(--kl-bg-soft);
+  text-decoration: none;
+}
+.series-listing .kl-ep-item.kl-planned { opacity: 0.66; }
+.series-listing .kl-ep-item.kl-planned:hover { background: transparent; }
+
+.series-listing .kl-ep-num {
+  font-family: var(--kl-display);
+  font-weight: 700; font-size: 24px;
+  color: var(--kl-accent); line-height: 1;
+}
+.series-listing .kl-ep-num-total {
+  font-family: var(--kl-sans);
+  font-size: 10px; color: var(--kl-ink-mute);
+  margin-left: 2px; letter-spacing: 0.06em;
+}
+.series-listing .kl-ep-body {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.series-listing .kl-ep-eyebrow {
+  font-family: var(--kl-sans);
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--kl-accent);
+  text-transform: uppercase;
+}
+.series-listing .kl-ep-title {
+  font-family: var(--kl-serif);
+  font-weight: 700; font-size: 17px;
+  color: var(--kl-ink);
+  line-height: 1.55; letter-spacing: 0.04em;
+}
+.series-listing .kl-ep-sub {
+  font-family: var(--kl-serif);
+  font-size: 13.5px;
+  color: var(--kl-ink-soft);
+  line-height: 1.7; letter-spacing: 0.04em;
+}
+.series-listing .kl-ep-meta {
+  display: flex; align-items: center;
+  gap: 14px; margin-top: 4px;
+  font-family: var(--kl-sans);
+  font-size: 10.5px;
+  color: var(--kl-ink-mute);
+  letter-spacing: 0.08em;
+}
+.series-listing .kl-ep-domain { color: var(--kl-ink-mute); }
+.series-listing .kl-ep-badge {
+  display: inline-block; padding: 3px 10px;
+  font-family: var(--kl-sans);
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.16em;
+  border: 1px solid var(--kl-line);
+}
+.series-listing .kl-ep-badge.published {
+  color: var(--kl-accent);
+  border-color: var(--kl-accent);
+}
+.series-listing .kl-ep-badge.planned {
+  color: var(--kl-ink-mute);
+  border-color: var(--kl-ink-mute);
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .series-listing { margin: 0 -16px; padding: 0 16px; }
+  .series-listing .kl-banner { padding: 48px 18px 32px; }
+  .series-listing .kl-banner-title { font-size: 26px; }
+  .series-listing .kl-banner-en { font-size: 15px; }
+  .series-listing .kl-stats {
+    grid-template-columns: repeat(2, auto); gap: 18px;
+  }
+  .series-listing .kl-progress { padding: 0 18px; }
+  .series-listing .kl-parts-jump { padding: 0 18px; margin-top: 36px; }
+  .series-listing .kl-parts-jump-title { font-size: 18px; }
+  .series-listing .kl-content-main { padding: 0 18px 56px; margin-top: 40px; }
+  .series-listing .kl-part-title { font-size: 20px; }
+  .series-listing .kl-ep-item {
+    grid-template-columns: 1fr; gap: 8px;
+    padding: 18px 0;
+  }
+  .series-listing .kl-ep-title { font-size: 15px; }
+  .series-listing .kl-ep-sub { font-size: 12.5px; }
+}

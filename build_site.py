@@ -372,9 +372,66 @@ def build_index_html() -> str:
     <div class="newsletter-eyebrow">EMERGING FUTURE NEWSLETTER</div>
     <h2 class="newsletter-title">新しい話の公開を、まずメールで。</h2>
     <p class="newsletter-desc">本連載「暮らしのかたち」の更新通知、ミラツクの未来洞察・学術翻訳の最新情報をお届けします。配信停止はいつでも可能です。</p>
-    <p style="margin-top:24px;color:rgba(20,17,15,0.6);font-family:var(--serif);font-size:14px;">メルマガ登録フォームは各エピソードページ末尾にあります。第1話から登録できます。</p>
+    <form class="nl-form" id="nlForm" onsubmit="return false;">
+      <div class="nl-step active" id="nlStep1">
+        <div class="nl-field"><input type="email" id="nlEmail" placeholder="メールアドレス" autocomplete="email"></div>
+        <button type="button" class="nl-btn" onclick="nlNext()">次へ →</button>
+        <div class="nl-trust">連載更新・実践事例・関連トピックをお届けします</div>
+      </div>
+      <div class="nl-step" id="nlStep2">
+        <div class="nl-row">
+          <div class="nl-field"><input type="text" id="nlName" placeholder="お名前" autocomplete="name"></div>
+          <div class="nl-field"><input type="text" id="nlOrg" placeholder="所属（任意）" autocomplete="organization"></div>
+        </div>
+        <label class="nl-consent"><input type="checkbox" id="nlConsent" checked> メールマガジン配信に同意します。配信停止はいつでも可能です。</label>
+        <button type="button" class="nl-btn" id="nlBtn" onclick="submitNl()">登録する</button>
+      </div>
+    </form>
+    <div class="nl-done" id="nlDone">ようこそ。確認メールをお送りしました。<br>これから一緒に「暮らしのかたち」を読み解いていきましょう。</div>
   </div>
 </section>
+
+<script>
+const NEWSLETTER_API = 'https://claude-code-manual-app.vercel.app/api/community';
+
+function nlNext() {{
+  const v = document.getElementById('nlEmail').value.trim();
+  if (!v || !v.includes('@')) {{
+    document.getElementById('nlEmail').style.borderColor = 'var(--accent)';
+    document.getElementById('nlEmail').focus();
+    setTimeout(() => document.getElementById('nlEmail').style.borderColor = '', 2000);
+    return;
+  }}
+  document.getElementById('nlStep1').classList.remove('active');
+  document.getElementById('nlStep2').classList.add('active');
+  document.getElementById('nlName').focus();
+}}
+async function submitNl() {{
+  const name = document.getElementById('nlName').value.trim();
+  const org = document.getElementById('nlOrg').value.trim();
+  const email = document.getElementById('nlEmail').value.trim();
+  const consent = document.getElementById('nlConsent').checked;
+  const btn = document.getElementById('nlBtn');
+  if (!name) {{ document.getElementById('nlName').focus(); return; }}
+  if (!consent) {{ alert('メールマガジン配信への同意が必要です'); return; }}
+  btn.disabled = true;
+  btn.textContent = '登録中…';
+  try {{
+    const res = await fetch(NEWSLETTER_API, {{
+      method: 'POST',
+      headers: {{ 'Content-Type': 'application/json' }},
+      body: JSON.stringify({{ name, org, email, source: 'kurashi-no-katachi/index' }}),
+    }});
+    if (!res.ok) throw new Error('failed');
+    document.getElementById('nlForm').classList.add('hide');
+    document.getElementById('nlDone').classList.add('show');
+  }} catch (e) {{
+    alert('登録に失敗しました。少し時間をおいて再度お試しください。');
+    btn.disabled = false;
+    btn.textContent = '登録する';
+  }}
+}}
+</script>
 
 <footer class="site-footer">
   <div class="site-footer-inner">

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暮らしのかたち ― 学術が日々の暮らしに出会うとき</title>
+<meta name="description" content="学術領域の歴史と最先端を、毎日の食卓・関係・身体・場へと翻訳する全100回連載。NPO法人ミラツク。">
+<meta property="og:title" content="暮らしのかたち ― 学術が日々の暮らしに出会うとき">
+<meta property="og:description" content="学術が日々の暮らしに出会うとき。全100回連載。">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://yuyanishimura0312.github.io/kurashi-no-katachi/">
+<link rel="icon" href="https://esse-sense.com/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@300;400;500;600;700;900&family=Judson:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.hero { padding: 120px 24px 80px; background: var(--bg); border-bottom: 1px solid var(--line); }
+.hero-inner { max-width: 980px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--sans); font-size: 11.5px; letter-spacing: 0.36em; color: var(--accent); font-weight: 700; display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+.hero-eyebrow::before { content: ""; width: 40px; height: 2px; background: var(--accent); }
+.hero-title { font-family: var(--serif); font-weight: 700; font-size: 56px; line-height: 1.4; letter-spacing: 0.02em; color: var(--ink); margin-bottom: 24px; }
+.hero-en { font-family: var(--display); font-size: 24px; color: var(--ink-mute); letter-spacing: 0.02em; margin-bottom: 32px; }
+.hero-tagline { font-family: var(--serif); font-size: 17px; line-height: 2; color: var(--ink-soft); max-width: 640px; padding-left: 22px; border-left: 3px solid var(--accent); margin-bottom: 40px; }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-cta a { display: inline-flex; align-items: center; padding: 14px 28px; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-decoration: none; transition: background .15s; }
+.hero-cta .primary { background: var(--accent); color: var(--bg); }
+.hero-cta .primary:hover { background: var(--accent-deep); text-decoration: none; }
+.hero-cta .secondary { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.hero-cta .secondary:hover { background: var(--ink); color: var(--bg); text-decoration: none; }
+
+.intro { padding: 80px 24px; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+.intro-inner { max-width: 720px; margin: 0 auto; }
+.intro p { font-family: var(--serif); font-size: 16px; line-height: 2.1; color: var(--ink-soft); margin-bottom: 24px; }
+.intro p strong { color: var(--ink); font-weight: 600; }
+
+.featured { padding: 80px 24px; background: var(--bg); border-bottom: 1px solid var(--line); }
+.featured-inner { max-width: 720px; margin: 0 auto; }
+.featured-label { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.32em; color: var(--accent); margin-bottom: 24px; }
+.featured-card { display: block; padding: 40px 36px; background: var(--bg-tint); border: 1px solid var(--line); text-decoration: none; transition: border-color .15s, transform .15s; }
+.featured-card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+.featured-num { font-family: var(--display); font-weight: 700; font-size: 56px; color: var(--ink); line-height: 1; margin-bottom: 16px; }
+.featured-num-total { font-family: var(--sans); font-size: 14px; color: var(--ink-mute); margin-left: 4px; letter-spacing: 0.08em; }
+.featured-eyebrow { font-family: var(--sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; color: var(--accent); margin-bottom: 14px; }
+.featured-title { font-family: var(--serif); font-weight: 700; font-size: 26px; line-height: 1.55; color: var(--ink); margin-bottom: 12px; }
+.featured-sub { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 24px; }
+.featured-cta { font-family: var(--sans); font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); }
+
+.parts-overview { padding: 80px 24px; background: var(--bg); }
+.parts-overview-inner { max-width: 1080px; margin: 0 auto; }
+.parts-overview-label { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.32em; color: var(--accent); margin-bottom: 14px; }
+.parts-overview-title { font-family: var(--serif); font-weight: 700; font-size: 32px; color: var(--ink); margin-bottom: 40px; }
+.parts-overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.parts-overview-card { padding: 28px 24px; background: var(--bg-soft); border: 1px solid var(--line); text-decoration: none; transition: border-color .15s, transform .15s; }
+.parts-overview-card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+.parts-overview-card-num { font-family: var(--display); font-weight: 700; font-size: 22px; color: var(--accent); margin-bottom: 8px; }
+.parts-overview-card-title { font-family: var(--serif); font-weight: 700; font-size: 17px; color: var(--ink); line-height: 1.55; margin-bottom: 8px; }
+.parts-overview-card-sub { font-family: var(--sans); font-size: 11px; color: var(--ink-mute); line-height: 1.7; }
+
+@media (max-width: 760px) {
+  .hero-title { font-size: 32px; }
+  .hero-en { font-size: 18px; }
+  .featured-title { font-size: 20px; }
+  .featured-num { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-brand">
+      <div class="site-brand-mark"><img src="assets/miratuku-mark.png" alt="ミラツク"></div>
+      <div class="site-brand-text">暮らしのかたち<small>KURASHI NO KATACHI / 学術が日々の暮らしに出会うとき</small></div>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html" class="active">ホーム</a>
+      <a href="articles.html">全100話</a>
+      <a href="#newsletter">メルマガ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">A SERIES OF ONE HUNDRED — 全100話連載</div>
+    <h1 class="hero-title">暮らしのかたち</h1>
+    <p class="hero-en">Forms of Life — Where Academia Meets Everyday Life</p>
+    <p class="hero-tagline">学術領域の歴史と最先端を、毎日の食卓・関係・身体・場へと翻訳する全100回連載。気分の浮き沈みから建築の高さまで、4,000の研究領域を27の暮らしのシーンから読み解いていきます。</p>
+    <div class="hero-cta">
+      <a class="primary" href="ep001.html">第1話から読む →</a>
+      <a class="secondary" href="articles.html">全100話の地図を見る</a>
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="intro-inner">
+    <p>日々生み出される研究成果は、そのままでは私たちの暮らしとどう繋がるのかが見えにくく、専門誌のなかで眠ったままになっています。<strong>暮らしのかたち</strong>は、その溝に小さな橋を架けていく試みです。</p>
+    <p>NPO法人ミラツクが2021年に作成した<strong>「暮らしのシーンカード」全27シーン</strong>――食事、住宅、睡眠、家事、はたらく、教育、旅、祭り、恋愛、結婚、育児、医療、看護、芸術、メディア、農業、漁業など――を出発点に、関連する学問の系譜と最新研究を重ね、毎日の暮らしを別の角度から見直すための100話を編んでいきます。</p>
+    <p>各記事は、<strong>暮らしの場面から始まり</strong>、研究者たちの系譜、最先端の発見、そして自分の毎日へと戻ってくる4部構成。Translational Editor の視点から、学問のドアを暮らしから開けていきます。</p>
+  </div>
+</section>
+
+
+    <section class="featured">
+      <div class="featured-inner">
+        <div class="featured-label">LATEST EPISODE — 最新話</div>
+        <a class="featured-card" href="ep001.html">
+          <div class="featured-num">001<span class="featured-num-total">/100</span></div>
+          <div class="featured-eyebrow">PROLOGUE — 序 章 第1話</div>
+          <h2 class="featured-title">学問のドアは、暮らしから開けることができる</h2>
+          <p class="featured-sub">― なぜこの連載では、4,000の研究領域を27のシーンから読み解くのか</p>
+          <span class="featured-cta">この話を読む →</span>
+        </a>
+      </div>
+    </section>
+
+<section class="parts-overview">
+  <div class="parts-overview-inner">
+    <div class="parts-overview-label">FIVE PARTS — 5つの章</div>
+    <h2 class="parts-overview-title">暮らしを編む5つの大きな問い</h2>
+    <div class="parts-overview-grid">
+      <a class="parts-overview-card" href="articles.html#part-i"><div class="parts-overview-card-num">PART I</div><div class="parts-overview-card-title">衣食住 ― 身体を包む環境</div><div class="parts-overview-card-sub">食事・住宅・ファッション</div></a>
+      <a class="parts-overview-card" href="articles.html#part-ii"><div class="parts-overview-card-num">PART II</div><div class="parts-overview-card-title">暮らしの基盤 ― 一日を成り立たせるもの</div><div class="parts-overview-card-sub">睡眠・家事・はたらく・教育</div></a>
+      <a class="parts-overview-card" href="articles.html#part-iii"><div class="parts-overview-card-num">PART III</div><div class="parts-overview-card-title">関係 ― 人と人のあいだ</div><div class="parts-overview-card-sub">恋愛・結婚・育児・ペット</div></a>
+      <a class="parts-overview-card" href="articles.html#part-iv"><div class="parts-overview-card-num">PART IV</div><div class="parts-overview-card-title">ケアと遊 ― 身体・健康・余白</div><div class="parts-overview-card-sub">医療・看護介護・スポーツ観戦・旅・祭り</div></a>
+      <a class="parts-overview-card" href="articles.html#part-v"><div class="parts-overview-card-num">PART V</div><div class="parts-overview-card-title">文化と公共 ― 共有されるもの</div><div class="parts-overview-card-sub">芸術・メディア・図書館・公園・産業</div></a>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-eyebrow">EMERGING FUTURE NEWSLETTER</div>
+    <h2 class="newsletter-title">新しい話の公開を、まずメールで。</h2>
+    <p class="newsletter-desc">本連載「暮らしのかたち」の更新通知、ミラツクの未来洞察・学術翻訳の最新情報をお届けします。配信停止はいつでも可能です。</p>
+    <p style="margin-top:24px;color:rgba(20,17,15,0.6);font-family:var(--serif);font-size:14px;">メルマガ登録フォームは各エピソードページ末尾にあります。第1話から登録できます。</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-cols">
+      <div class="site-footer-col">
+        <h4>ABOUT</h4>
+        <p><strong>暮らしのかたち ― 学術が日々の暮らしに出会うとき</strong></p>
+        <p style="margin-top:8px;color:var(--ink-mute);">学術領域の歴史と最先端を、毎日の食卓・関係・身体・場へと翻訳する全100回連載。NPO法人ミラツク代表理事・西村勇也。</p>
+      </div>
+      <div class="site-footer-col">
+        <h4>NAVIGATION</h4>
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="articles.html">全100話 一覧</a></li>
+          <li><a href="#newsletter">メルマガ登録</a></li>
+        </ul>
+      </div>
+      <div class="site-footer-col">
+        <h4>MIRA TUKU</h4>
+        <ul>
+          <li><a href="https://emerging-future.org/" target="_blank" rel="noopener">emerging-future.org</a></li>
+          <li><a href="https://github.com/yuyanishimura0312/kurashi-no-katachi" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-disclaimer" style="padding: 24px 0; border-top: 1px solid var(--line); font-family: var(--serif); font-size: 12.5px; line-height: 1.95; color: var(--ink-mute); letter-spacing: 0.04em;">
+      <p style="margin-bottom: 6px;"><strong style="color: var(--ink-soft);">本連載の利用について</strong></p>
+      <p>本連載で紹介する研究内容は2024年時点までの公表知見に基づくもので、その後の研究で更新される可能性があります。引用した数値・効果は集団の傾向であり、個人差が大きいことが前提です。健康・医療・心理・育児に関わる判断は、必ず専門家にご相談ください。研究の存在・年代・著者は実在検証を行っていますが、解釈や要約に誤りを発見された場合はコメント欄からご指摘ください。</p>
+    </div>
+    <div class="site-footer-bottom">
+      <span>© 2026 NPO法人ミラツク</span>
+      <span>暮らしのかたち ― 学術が日々の暮らしに出会うとき</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
